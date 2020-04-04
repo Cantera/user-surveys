@@ -43,18 +43,8 @@ install_methods = [
 interface_data = data[range(8, 13)]
 interface_data.columns = interfaces
 n_responses = len(interface_data.index)
-
-# %%
 ax = (interface_data.count().sort_index() / n_responses).plot.barh()
-ax.set_xlabel("Fraction of Responses")
-ax.set_title("Which interface(s) do you use to access Cantera?")
-for p in ax.patches:
-    ax.annotate(
-        str(int(p.get_width() * n_responses)),
-        (p.get_x() + p.get_width(), p.get_y()),
-        xytext=(3, 8),
-        textcoords="offset points",
-    )
+annotate_plot(ax, "Which interface(s) do you use to access Cantera?", n_responses)
 
 # %%
 os_data = data[range(1, 8)]
